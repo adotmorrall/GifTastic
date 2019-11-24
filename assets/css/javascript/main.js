@@ -35,13 +35,18 @@ $(document).on('click', '.btn-click', function () {
         url: queryURL,
         method: 'GET'
     }).then(function (response) {
-        var fixedHeight = response.data[0].images.fixed_height.url;
-        console.log(fixedHeight); //https://developers.giphy.com/docs/api/schema/#image-object
+        // var fixedHeight = response.data[0].images.fixed_height.url;
+        // console.log(fixedHeight); //https://developers.giphy.com/docs/api/schema/#image-object
+        for (var i = 0; i < response.data.length; i++) {
+            console.log(response.data.length[i]);
+        }
 
         // Test to load gif into the 
-        var addGif = $('<img>');
-        var gifDiv = addGif.attr('src', fixedHeight);
-        $('#gif-section').append(gifDiv)
+        // var addGif = $('<img>');
+        // var gifDiv = addGif.attr('src', fixedHeight);
+        // $('#gif-section').append(gifDiv)
+
+        // For loop test
 
     })
 
