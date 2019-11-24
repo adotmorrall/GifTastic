@@ -1,6 +1,6 @@
 // Refer to 06-Ajax activities + Panoptop video
 
-var athletes = ['lebron james', 'kobe bryant', 'michael jordan', 'odell beckham jr', 'simone biles', 'floyd mayweather', 'dwayne wade', 'ken griffey jr', 'tom brady', 'larry bird', 'penny hardaway', 'nolan ryan', 'evander holyfield'];
+var athletes = ['lebron james', 'kobe bryant', 'michael jordan', 'odell beckham jr', 'simone biles', 'floyd mayweather', 'dwayne wade', 'kevin durant', 'tom brady', 'larry bird', 'penny hardaway', 'nolan ryan', 'evander holyfield', `shaquille o'neal`, 'peyton manning', 'steph curry', 'kyrie irving'];
 
 function showAthleteButton() {
     for (var i = 0; i < athletes.length; i++) {
@@ -28,7 +28,7 @@ $('#submit-btn').click(function (event) {
 $(document).on('click', '.btn-click', function () {
     console.log('I work')
     var userAthleteInput = $(this).text();
-    var queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=ccxCr3q18LuZy8wDnC0dYPLWYBENh5Rz&limit=9&q=' + userAthleteInput;
+    var queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=ccxCr3q18LuZy8wDnC0dYPLWYBENh5Rz&limit=10&q=' + userAthleteInput;
 
 
     $.ajax({
@@ -36,16 +36,32 @@ $(document).on('click', '.btn-click', function () {
         method: 'GET'
     }).then(function (response) {
         var results = response.data;
+        console.log(results);
+
+        // var still
+        // console.log(stilll);
+        // var animate
+        // console.log(animate);
 
         for (var i = 0; i < results.length; i++) {
             console.log(results[i].images.fixed_height.url);
+            console.log(results[i].rating);
 
-            var addGif = $('<img>');
-            var testGif = results[i].images.fixed_height.url;
-            var gifDiv = addGif.attr('src', testGif);
+            // var addRating = $('<p>');
+            // var rating = results[i].rating;
+            // $(addGif).text(addRating + 'Rating: ' + rating);
+
+            // Figure out how to add rating. Needs to append to each image
+            $('div#gif-section img').append('<p>');
+
+            // var addGif = $('<img>');
+            var gifImage = results[i].images.fixed_height.url;
+            var gifDiv = $('<img>').attr('src', gifImage);
             $('#gif-section').append(gifDiv)
+
         }
 
+        // Figure out how to clear the div when the user clicks on a different button
     })
 
 })
