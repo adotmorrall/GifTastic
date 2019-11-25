@@ -9,7 +9,7 @@ function showAthleteButton() {
         var a = $('<button>');
         a.addClass('btn-click');
         a.text(athletes[i]);
-        $('#gif-buttons').append(a);
+        $('#gif-buttons').prepend(a);
     }
 }
 showAthleteButton();
@@ -39,29 +39,29 @@ $(document).on('click', '.btn-click', function () {
         console.log(results);
 
         // var still
-        // console.log(stilll);
+        // console.log(still);
         // var animate
         // console.log(animate);
 
         for (var i = 0; i < results.length; i++) {
             console.log(results[i].images.fixed_height.url);
-            console.log(results[i].rating);
-
-            // var addRating = $('<p>');
-            // var rating = results[i].rating;
-            // $(addGif).text(addRating + 'Rating: ' + rating);
-
-            // Figure out how to add rating. Needs to append to each image
-            $('div#gif-section img').append('<p>');
 
             // var addGif = $('<img>');
             var gifImage = results[i].images.fixed_height.url;
             var gifDiv = $('<img>').attr('src', gifImage);
-            $('#gif-section').append(gifDiv)
+            $('#gif-section').prepend(gifDiv)
+
+            var rating = results[i].rating;
+            console.log('Rating:' + results[i].rating);
+            var showRating = $('<p>').text('Rating: ' + rating);
+            $('#gif-section').prepend(showRating);
+
+            /* Adding the above code messes up the layout of the gifs on the page.
+            Do I need to make the <p> & <img> as a single div? */
 
         }
 
-        // Figure out how to clear the div when the user clicks on a different button
+        // Figure out how to clear the div when the user clicks on a different button?
     })
 
 })
